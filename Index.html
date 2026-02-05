@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  		<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 		 <title>laab lab Phuket Old Town</title>
+  	<style>
+    :root{
+      --bg:#fffaf3;
+      --card:#ffffff;
+      --ink:#171717;
+      --muted:#6b6b6b;
+      --o1:#ff7a18;
+      --o2:#ff9a3d;
+      --o3:#ffd1a6;
+      --shadow: 0 18px 45px rgba(0,0,0,.08);
+      --shadow2: 0 10px 30px rgba(255,122,24,.22);
+      --ring: 0 0 0 6px rgba(255,122,24,.14);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(255,154,61,.20), transparent 55%),
+        radial-gradient(1000px 700px at 90% 20%, rgba(255,122,24,.12), transparent 58%),
+        linear-gradient(180deg, #fff 0%, var(--bg) 70%, #fff 100%);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    button{font:inherit}
+    .wrap{width:min(1120px, calc(100% - 40px)); margin:0 auto}
+
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(255,255,255,.78);
+      border-bottom: 1px solid rgba(255,122,24,.16);
+    }
+    .topbar .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{display:flex; align-items:center; gap:12px; letter-spacing:.2px;}
+    .logo{
+      width:42px; height:42px; border-radius:14px;
+      background:
+        radial-gradient(12px 12px at 25% 30%, rgba(255,255,255,.9), transparent 60%),
+        linear-gradient(135deg, var(--o1), var(--o2));
+      box-shadow: var(--shadow2);
+      position:relative;
+      isolation:isolate;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:10px;
+      border-radius:12px;
+      background: linear-gradient(135deg, rgba(255,255,255,.75), rgba(255,255,255,.10));
+      filter: blur(.2px);
+      opacity:.85;
+      z-index:-1;
+    }
+    .brand h1{margin:0; font-size:16px; font-weight:820; line-height:1.1;}
+    .brand .sub{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      font-weight:650;
+      margin-top:2px;
+    }
+
+    nav{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
+    .pill{
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,122,24,.18);
+      background: rgba(255,255,255,.8);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      font-weight:750;
+      font-size:13px;
+      cursor:pointer;
+    }
+    .pill:hover{transform: translateY(-1px); box-shadow: var(--shadow2); border-color: rgba(255,122,24,.35);}
+    .pill.primary{
+      background: linear-gradient(135deg, var(--o1), var(--o2));
+      border: 0;
+      color:white;
+      box-shadow: var(--shadow2);
+    }
+    .cartBadge{
+      display:inline-flex; align-items:center; justify-content:center;
+      min-width:22px; height:22px; padding:0 7px;
+      border-radius:999px;
+      background: rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.30);
+      margin-left:8px;
+      font-weight:850;
+      font-size:12px;
+    }
+
+    .hero{position:relative; padding:58px 0 26px;}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 960px){ .heroGrid{grid-template-columns:1fr; gap:16px} }
+
+    .heroCard{
+      border-radius: calc(var(--radius) + 6px);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78)),
+        radial-gradient(900px 500px at 20% 0%, rgba(255,122,24,.12), transparent 58%),
+        linear-gradient(135deg, rgba(255,122,24,.12), rgba(255,154,61,.08));
+      border: 1px solid rgba(255,122,24,.16);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:26px;
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(340px 200px at var(--mx,50%) var(--my,35%), rgba(255,122,24,.25), transparent 65%),
+        repeating-linear-gradient(90deg, transparent 0 18px, rgba(255,122,24,.05) 18px 19px);
+      pointer-events:none;
+      opacity:.9;
+      mask: linear-gradient(#000, transparent 75%);
+    }
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,122,24,.10);
+      border: 1px solid rgba(255,122,24,.22);
+      font-weight:800;
+      font-size:13px;
+      color: #8a3a00;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--o1), var(--o2));
+      box-shadow: 0 0 0 4px rgba(255,122,24,.14);
+    }
+    .heroTitle{
+      margin:14px 0 10px;
+      font-size:44px;
+      line-height:1.05;
+      font-weight:900;
+      letter-spacing:-.7px;
+    }
+    @media (max-width: 520px){ .heroTitle{font-size:38px} }
+    .heroTitle .accent{
+      background: linear-gradient(135deg, var(--o1), var(--o2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .heroP{
+      margin:0;
+      color: #3c3c3c;
+      font-size:15px;
+      line-height:1.7;
+      font-weight:650;
+      max-width: 62ch;
+    }
+    .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; align-items:center;}
+    .btn{
+      border:0; cursor:pointer;
+      padding:12px 14px;
+      border-radius: 14px;
+      font-weight:850;
+      letter-spacing:.2px;
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      display:inline-flex; align-items:center; gap:10px;
+      user-select:none;
+      background: rgba(255,255,255,.72);
+      border:1px solid rgba(255,122,24,.20);
+    }
+    .btn.primary{
+      color:white;
+      background: linear-gradient(135deg, var(--o1), var(--o2));
+      border:0;
+      box-shadow: var(--shadow2);
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: var(--shadow2)}
+    .btn:active{transform: translateY(0px); filter: brightness(.98)}
+    .btn .ic{
+      width:18px; height:18px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.25);
+      display:inline-grid; place-items:center;
+      font-size:12px;
+    }
+
+    .stats{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:10px;
+    }
+    @media (max-width: 520px){ .stats{grid-template-columns:1fr;} }
+    .stat{
+      padding:12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.70);
+      border:1px solid rgba(255,122,24,.14);
+      box-shadow: 0 10px 25px rgba(0,0,0,.05);
+    }
+    .stat .big{font-weight:950; font-size:18px; letter-spacing:-.3px;}
+    .stat .small{color:var(--muted); font-weight:750; font-size:12px; margin-top:2px;}
+
+    .heroMedia{
+      border-radius: calc(var(--radius) + 6px);
+      background: rgba(255,255,255,.75);
+      border:1px solid rgba(255,122,24,.16);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .mediaTop{
+      display:flex; gap:10px;
+      padding:14px;
+      align-items:center;
+      border-bottom: 1px solid rgba(255,122,24,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.70));
+      flex-wrap:wrap;
+    }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,122,24,.18);
+      background: rgba(255,255,255,.70);
+      font-weight:850;
+      font-size:12px;
+      color:#7a3200;
+      white-space:nowrap;
+    }
+    .chip .miniDot{
+      width:8px; height:8px; border-radius:999px;
+      background: linear-gradient(135deg, var(--o1), var(--o2));
+      box-shadow: 0 0 0 3px rgba(255,122,24,.13);
+    }
+    .imgWrap{position:relative; aspect-ratio: 16 / 11; overflow:hidden;}
+    .imgWrap img{
+      width:100%; height:100%;
+      object-fit:cover;
+      transform: scale(1.02);
+      transition: transform .8s ease;
+    }
+    .imgWrap:hover img{transform: scale(1.08)}
+    .imgOverlay{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(800px 400px at 20% 0%, rgba(255,122,24,.22), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.36));
+      pointer-events:none;
+    }
+    .imgLabel{
+      position:absolute; left:14px; bottom:14px; right:14px;
+      display:flex; gap:10px; align-items:flex-end; justify-content:space-between;
+      color:white;
+    }
+    .imgLabel strong{font-size:16px; font-weight:950; letter-spacing:-.2px;}
+    .imgLabel span{font-size:12px; font-weight:800; opacity:.92;}
+
+    section{padding:22px 0}
+    .sectionHead{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:12px; flex-wrap:wrap;}
+    .h2{font-size:22px; font-weight:950; margin:0; letter-spacing:-.3px;}
+    .h2 .accent{
+      background: linear-gradient(135deg, var(--o1), var(--o2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .desc{margin:0; color:var(--muted); font-weight:700; line-height:1.6; font-size:13px; max-width: 70ch;}
+
+    .controls{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; align-items:center;}
+    .input{
+      border-radius: 14px;
+      border:1px solid rgba(255,122,24,.18);
+      background: rgba(255,255,255,.75);
+      padding:12px 12px;
+      outline:none;
+      font-weight:750;
+      min-width: 230px;
+      transition: box-shadow .18s ease, border-color .18s ease;
+    }
+    .input:focus{box-shadow: var(--ring); border-color: rgba(255,122,24,.35);}
+    .seg{
+      display:flex;
+      border-radius: 14px;
+      border:1px solid rgba(255,122,24,.18);
+      background: rgba(255,255,255,.75);
+      overflow:hidden;
+    }
+    .seg button{
+      border:0;
+      padding:11px 12px;
+      cursor:pointer;
+      background:transparent;
+      font-weight:850;
+      color:#4a4a4a;
+      transition: background .18s ease, color .18s ease;
+    }
+    .seg button.active{
+      background: linear-gradient(135deg, rgba(255,122,24,.18), rgba(255,154,61,.12));
+      color:#7a3200;
+    }
+
+    .menuGrid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .card{
+      grid-column: span 4;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(255,122,24,.14);
+      box-shadow: 0 14px 35px rgba(0,0,0,.06);
+      overflow:hidden;
+      position:relative;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .card:hover{transform: translateY(-3px); box-shadow: 0 22px 55px rgba(0,0,0,.10); border-color: rgba(255,122,24,.25);}
+    @media (max-width: 1020px){ .card{grid-column: span 6;} }
+    @media (max-width: 620px){ .card{grid-column: span 12;} }
+
+    .cardTop{
+      padding:16px 16px 10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+    }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius: 999px;
+      font-weight:900;
+      font-size:12px;
+      background: rgba(255,122,24,.10);
+      border:1px solid rgba(255,122,24,.20);
+      color:#7a3200;
+    }
+    .tag .spark{
+      width:18px; height:18px;
+      border-radius: 7px;
+      display:inline-grid; place-items:center;
+      background: linear-gradient(135deg, rgba(255,122,24,.55), rgba(255,154,61,.35));
+      color:white;
+      font-size:12px;
+      box-shadow: 0 12px 22px rgba(255,122,24,.22);
+    }
+    .price{font-weight:950; font-size:16px; letter-spacing:-.2px; color:#2b2b2b; white-space:nowrap;}
+    .cardBody{padding:0 16px 14px;}
+    .name{margin:0; font-size:18px; font-weight:950; letter-spacing:-.25px;}
+    .meta{margin:6px 0 0; color:var(--muted); font-weight:700; font-size:13px; line-height:1.55;}
+    .cardBottom{
+      display:flex; gap:10px;
+      padding: 0 16px 16px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .qty{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius: 14px;
+      border:1px solid rgba(255,122,24,.16);
+      background: rgba(255,255,255,.75);
+      user-select:none;
+    }
+    .qty button{
+      width:32px; height:32px;
+      border-radius: 12px;
+      border:0;
+      cursor:pointer;
+      font-weight:950;
+      background: rgba(255,122,24,.12);
+      color:#7a3200;
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .qty button:hover{transform: translateY(-1px)}
+    .qty b{min-width:18px; text-align:center; display:inline-block}
+    .mini{
+      padding:10px 12px;
+      border-radius: 14px;
+      border:0;
+      cursor:pointer;
+      font-weight:950;
+      background: linear-gradient(135deg, var(--o1), var(--o2));
+      color:white;
+      box-shadow: 0 14px 28px rgba(255,122,24,.22);
+      transition: transform .16s ease, box-shadow .16s ease, filter .16s ease;
+    }
+    .mini:hover{transform: translateY(-1px); box-shadow: 0 18px 40px rgba(255,122,24,.28)}
+    .ghostMini{
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,122,24,.18);
+      background: rgba(255,255,255,.75);
+      cursor:pointer;
+      font-weight:950;
+      color:#7a3200;
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+    }
+    .ghostMini:hover{transform: translateY(-1px); border-color: rgba(255,122,24,.30); box-shadow: 0 16px 30px rgba(0,0,0,.07);}
+
+    .reviews{
+      border-radius: calc(var(--radius) + 6px);
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(255,122,24,.14);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .reviewsHead{
+      padding:16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      border-bottom:1px solid rgba(255,122,24,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.70));
+      flex-wrap:wrap;
+    }
+    .revNav{display:flex; gap:8px;}
+    .revBtn{
+      width:40px; height:40px;
+      border-radius: 14px;
+      border:1px solid rgba(255,122,24,.18);
+      background: rgba(255,255,255,.75);
+      cursor:pointer;
+      font-weight:950;
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+    }
+    .revBtn:hover{transform: translateY(-1px); box-shadow: 0 16px 30px rgba(0,0,0,.07); border-color: rgba(255,122,24,.30);}
+
+    .track{display:flex; gap:12px; padding:16px; overflow:hidden;}
+    .reviewCard{
+      min-width: calc(33.333% - 8px);
+      border-radius: var(--radius);
+      border:1px solid rgba(255,122,24,.14);
+      background:
+        radial-gradient(600px 240px at 20% 0%, rgba(255,122,24,.12), transparent 60%),
+        rgba(255,255,255,.82);
+      box-shadow: 0 16px 40px rgba(0,0,0,.06);
+      padding:16px;
+      transform: translateX(var(--rx, 0px));
+      transition: transform .45s cubic-bezier(.2,.8,.2,1);
+    }
+    @media (max-width: 980px){ .reviewCard{min-width: calc(50% - 6px);} }
+    @media (max-width: 620px){ .reviewCard{min-width: 100%;} }
+    .stars{display:flex; gap:3px; font-size:14px; color:#ff8b2b; margin-bottom:8px; user-select:none;}
+    .quote{margin:0; font-weight:750; line-height:1.65; color:#2f2f2f; font-size:13.5px;}
+    .who{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px;}
+    .avatar{
+      width:44px; height:44px;
+      border-radius: 16px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.9), transparent 60%),
+        linear-gradient(135deg, var(--o1), var(--o2));
+      box-shadow: 0 16px 30px rgba(255,122,24,.20);
+      flex:none;
+    }
+    .who b{font-weight:950}
+    .who span{display:block; color:var(--muted); font-weight:750; font-size:12px; margin-top:2px;}
+    .badge{
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,122,24,.18);
+      background: rgba(255,255,255,.75);
+      font-weight:900;
+      font-size:12px;
+      color:#7a3200;
+      white-space:nowrap;
+    }
+
+    footer{padding:28px 0 44px; color:var(--muted); font-weight:750;}
+    .footCard{
+      border-radius: calc(var(--radius) + 6px);
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(255,122,24,.14);
+      box-shadow: var(--shadow);
+      padding:18px;
+      display:flex;
+      gap:14px;
+      justify-content:space-between;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .footCard strong{color:#2b2b2b; font-weight:950;}
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform: translateX(-50%) translateY(30px);
+      opacity:0;
+      pointer-events:none;
+      padding:12px 14px;
+      border-radius: 16px;
+      background: rgba(23,23,23,.88);
+      color:white;
+      font-weight:850;
+      box-shadow: 0 20px 60px rgba(0,0,0,.22);
+      transition: transform .25s ease, opacity .25s ease;
+      z-index:80;
+      max-width: min(520px, calc(100% - 40px));
+      display:flex; gap:10px; align-items:center; justify-content:space-between;
+    }
+    .toast.show{transform: translateX(-50%) translateY(0px); opacity:1;}
+    .toast small{opacity:.8; font-weight:750}
+    .kbd{
+      padding:6px 9px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      font-weight:950;
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .modalBg{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.50);
+      backdrop-filter: blur(10px);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .22s ease;
+      z-index:90;
+      display:grid;
+      place-items:center;
+      padding:18px;
+    }
+    .modalBg.open{opacity:1; pointer-events:auto}
+    .modal{
+      width:min(720px, 100%);
+      border-radius: calc(var(--radius) + 8px);
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(255,122,24,.18);
+      box-shadow: 0 28px 80px rgba(0,0,0,.24);
+      overflow:hidden;
+      transform: translateY(12px) scale(.98);
+      opacity:0;
+      transition: transform .22s ease, opacity .22s ease;
+    }
+    .modalBg.open .modal{transform: translateY(0) scale(1); opacity:1}
+    .modalHead{
+      padding:16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      border-bottom:1px solid rgba(255,122,24,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.78));
+    }
+    .modalHead b{font-weight:950; letter-spacing:-.2px; font-size:16px;}
+    .close{
+      width:40px; height:40px;
+      border-radius: 14px;
+      border:1px solid rgba(255,122,24,.18);
+      background: rgba(255,255,255,.75);
+      cursor:pointer;
+      font-weight:950;
+    }
+    .modalBody{padding:16px; display:grid; gap:10px;}
+    .line{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-radius: 16px;
+      border:1px solid rgba(255,122,24,.14);
+      background: rgba(255,255,255,.75);
+      align-items:center;
+    }
+    .line small{color:var(--muted); font-weight:750}
+    .line b{font-weight:950}
+    .modalFoot{
+      padding:16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      border-top:1px solid rgba(255,122,24,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.92));
+      flex-wrap:wrap;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>laab lab <span class="sub">Phuket Old Town • Tuna Roll • Blacktea Honey Lemon Craft Soda</span></h1>
+        </div>
+      </div>
+      <nav>
+        <a class="pill" href="#menu">Menu</a>
+        <a class="pill" href="#reviews">Reviews</a>
+        <a class="pill" href="#contact">Branch</a>
+        <button class="pill primary" id="openCartBtn">Cart <span class="cartBadge" id="cartCount">0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap heroGrid">
+        <div class="heroCard" id="heroCard">
+          <div class="kicker"><span class="dot"></span> Crafted flavors with a clean orange-and-white identity</div>
+          <h2 class="heroTitle">A refined bite, a bright sip — <span class="accent">laab lab</span></h2>
+          <p class="heroP">
+            Located in Phuket Old Town, laab lab focuses on two signature items: <b>Tuna Roll</b> and
+            <b>Blacktea Honey Lemon Craft Soda</b>. The concept is simple: balanced flavors, thoughtful presentation,
+            and a contemporary visual style.
+          </p>
+          <div class="ctaRow">
+            <button class="btn primary" id="scrollMenu"><span class="ic">▾</span> Explore the menu</button>
+            <button class="btn" id="randomPick"><span class="ic">✦</span> Random selection</button>
+            <button class="btn" id="copyLocation"><span class="ic">⎘</span> Copy branch label</button>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="big">Tuna Roll</div>
+              <div class="small">Clean taste • Consistent texture • Signature roll</div>
+            </div>
+            <div class="stat">
+              <div class="big">Craft Soda</div>
+              <div class="small">Honey-lemon profile • Gentle carbonation • Refreshing finish</div>
+            </div>
+            <div class="stat">
+              <div class="big">Phuket Old Town</div>
+              <div class="small">Walkable area • Heritage atmosphere • Modern dining</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="heroMedia">
+          <div class="mediaTop">
+            <div class="chip"><span class="miniDot"></span> Product visuals</div>
+            <div class="chip"><span class="miniDot"></span> Orange/white palette</div>
+            <div class="chip"><span class="miniDot"></span> Phuket Old Town</div>
+          </div>
+
+          <div class="imgWrap">
+            <img src="soda.jpg" alt="Blacktea Honey Lemon Craft Soda" />
+            <div class="imgOverlay"></div>
+            <div class="imgLabel">
+              <div>
+                <strong>Blacktea Honey Lemon Craft Soda</strong>
+                <span>File: soda.jpg</span>
+              </div>
+              <span class="badge" id="todayTag">Today: Bright</span>
+            </div>
+          </div>
+
+          <div class="imgWrap">
+            <img src="sushi.jpg" alt="Tuna Roll" />
+            <div class="imgOverlay"></div>
+            <div class="imgLabel">
+              <div>
+                <strong>Tuna Roll</strong>
+                <span>File: sushi.jpg</span>
+              </div>
+              <span class="badge">Signature</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h3 class="h2">Menu <span class="accent">Selection</span></h3>
+            <p class="desc">Use search and filters to browse items. You can also add items to the cart for a simple ordering preview.</p>
+          </div>
+          <div class="controls">
+            <input class="input" id="search" type="search" placeholder="Search: tuna / honey / lemon / soda..." autocomplete="off" />
+            <div class="seg" role="tablist" aria-label="Filter">
+              <button class="active" data-filter="all">All</button>
+              <button data-filter="sushi">Roll</button>
+              <button data-filter="soda">Soda</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menuGrid" id="menuGrid"></div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h3 class="h2">Customer <span class="accent">Reviews</span></h3>
+            <p class="desc">Bilingual-style reviews (Thai mixed with English). Slide controls and keyboard navigation are available.</p>
+          </div>
+        </div>
+
+        <div class="reviews">
+          <div class="reviewsHead">
+            <div>
+              <b style="font-weight:950; letter-spacing:-.2px;">What customers are saying</b><br>
+              <span style="color:var(--muted); font-weight:750; font-size:12px;">Tip: Use ← → on your keyboard</span>
+            </div>
+            <div class="revNav">
+              <button class="revBtn" id="prevRev" aria-label="Previous">←</button>
+              <button class="revBtn" id="nextRev" aria-label="Next">→</button>
+            </div>
+          </div>
+          <div class="track" id="revTrack"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div class="wrap">
+        <div class="footCard">
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <div class="logo" aria-hidden="true" style="width:46px;height:46px;border-radius:16px;"></div>
+            <div>
+              <strong>laab lab — Phuket Old Town</strong><br>
+              <span>Branch information • Hours: 11:00–21:00 (adjust as needed)</span>
+            </div>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+            <button class="ghostMini" id="callBtn">Call</button>
+            <button class="ghostMini" id="lineBtn">LINE</button>
+            <button class="mini" id="igBtn">Instagram</button>
+          </div>
+        </div>
+        <div style="margin-top:12px; font-size:12px;">
+          © <span id="year"></span> laab lab. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">
+    <div>
+      <div id="toastTitle">Added</div>
+      <small id="toastSub">View the cart for details</small>
+    </div>
+    <div class="kbd" id="toastKbd">Enter</div>
+  </div>
+
+  <div class="modalBg" id="modalBg" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Cart">
+      <div class="modalHead">
+        <b>Cart</b>
+        <button class="close" id="closeModal">✕</button>
+      </div>
+      <div class="modalBody" id="cartLines"></div>
+      <div class="modalFoot">
+        <div>
+          <div style="font-weight:950;">Total</div>
+          <div style="color:var(--muted); font-weight:750; font-size:12px;">Delivery fees are not included (if applicable).</div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;">
+          <div style="font-weight:950; font-size:18px;" id="cartTotal">฿0</div>
+          <button class="ghostMini" id="clearCart">Clear</button>
+          <button class="mini" id="checkout">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const MENU = [
+  { id:"m1", type:"sushi", name:"Laab Tuna Spicy Roll", price:169, tag:"Signature", spark:"🌶️", desc:"Signature roll with a bold spicy tuna profile and a balanced finish." },
+  { id:"m2", type:"sushi", name:"Tuna Roll", price:129, tag:"Classic", spark:"🍣", desc:"A clean and simple tuna roll with a refined texture." },
+  { id:"m3", type:"sushi", name:"Salmon Roll", price:149, tag:"Popular", spark:"🐟", desc:"Salmon-forward roll with a smooth, fresh finish." },
+  { id:"m4", type:"sushi", name:"California Roll", price:189, tag:"Customer Favorite", spark:"🥑", desc:"A familiar roll with a balanced, creamy profile." },
+  { id:"m5", type:"sushi", name:"Philadelphia Roll", price:189, tag:"Rich", spark:"🧀", desc:"Creamy and rich profile with a smooth finish." },
+  { id:"m6", type:"sushi", name:"Unagi Roll", price:189, tag:"Chef’s Choice", spark:"🔥", desc:"Unagi-style flavor with a savory, glazed finish." },
+  { id:"m7", type:"sushi", name:"Shrimp Mango Roll", price:179, tag:"Refreshing", spark:"🍤", desc:"Shrimp and mango pairing for a bright, refreshing bite." },
+
+  { id:"d1", type:"soda", name:"Blacktea Honey Lemon Craft Soda", price:89, tag:"Signature", spark:"🍋", desc:"Black tea depth with honey sweetness and a lemon-forward finish." },
+  { id:"d2", type:"soda", name:"Blacktea Honey Lemon Craft Soda (Less Sweet)", price:89, tag:"Light", spark:"🫧", desc:"A lighter sweetness level while preserving tea aroma and citrus brightness." }
+];
+
+    const REVIEWS = [
+  { name:"May", place:"Phuket Old Town", stars:5, text:"ทูน่าโรลลาภคือดีมากสะอาด กินแล้วรู้สึกถึงอีสาu", badge:"so good" },
+  { name:"บอมคนอีสาน", place:"Phuket", stars:5, text:"อร่อยมากกคับ", badge:"Approved" },
+  { name:"mark", place:"Old Town", stars:4, text:"highly recommended🙌🏻", badge:"Photo-ready" },
+  { name:"เชนบอย", place:"Phuket", stars:5, text:"อร่อยมากคับ", badge:"Repeat" },
+  { name:"cityboy", place:"Phuket", stars:4, text:"spicy option เผ็ดกำลังดีไม่กลบรสทูน่า", badge:"Nice" }
+];
+
+    const $ = (q, el=document) => el.querySelector(q);
+    const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
+
+    const menuGrid = $("#menuGrid");
+    const search = $("#search");
+    const filterBtns = $$(".seg button");
+    const cartCount = $("#cartCount");
+    const toast = $("#toast");
+    const toastTitle = $("#toastTitle");
+    const toastSub = $("#toastSub");
+    const toastKbd = $("#toastKbd");
+
+    const modalBg = $("#modalBg");
+    const openCartBtn = $("#openCartBtn");
+    const closeModal = $("#closeModal");
+    const cartLines = $("#cartLines");
+    const cartTotal = $("#cartTotal");
+    const clearCart = $("#clearCart");
+    const checkout = $("#checkout");
+
+    const revTrack = $("#revTrack");
+    const prevRev = $("#prevRev");
+    const nextRev = $("#nextRev");
+
+    const state = {
+      filter: "all",
+      q: "",
+      cart: new Map(),
+      revIndex: 0,
+      revTimer: null,
+      toastTimer: null
+    };
+
+    function money(n){ return "฿" + n.toLocaleString("th-TH"); }
+
+    function renderMenu(){
+      const q = state.q.trim().toLowerCase();
+      const filtered = MENU.filter(item => {
+        const okType = state.filter === "all" ? true : item.type === state.filter;
+        const okQ = !q ? true : (item.name + " " + item.desc + " " + item.tag).toLowerCase().includes(q);
+        return okType && okQ;
+      });
+
+      menuGrid.innerHTML = filtered.map(item => {
+        const inCart = state.cart.get(item.id) || 0;
+        return `
+          <article class="card" data-id="${item.id}">
+            <div class="cardTop">
+              <span class="tag"><span class="spark">${item.spark}</span>${item.tag}</span>
+              <div class="price">${money(item.price)}</div>
+            </div>
+            <div class="cardBody">
+              <h4 class="name">${item.name}</h4>
+              <p class="meta">${item.desc}</p>
+            </div>
+            <div class="cardBottom">
+              <div class="qty" aria-label="Quantity">
+                <button class="dec" aria-label="Decrease">−</button>
+                <b class="num">${inCart}</b>
+                <button class="inc" aria-label="Increase">+</button>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <button class="ghostMini detail">Details</button>
+                <button class="mini add">Add</button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      $$(".card", menuGrid).forEach(card => {
+        const id = card.dataset.id;
+        const item = MENU.find(x => x.id === id);
+
+        const num = $(".num", card);
+        const inc = $(".inc", card);
+        const dec = $(".dec", card);
+        const add = $(".add", card);
+        const detail = $(".detail", card);
+
+        const sync = () => { num.textContent = String(state.cart.get(id) || 0); };
+
+        inc.addEventListener("click", () => { addToCart(id, 1); sync(); });
+        dec.addEventListener("click", () => { addToCart(id, -1); sync(); });
+        add.addEventListener("click", () => { addToCart(id, 1); sync(); });
+
+        detail.addEventListener("click", () => {
+          showToast(item.name, item.desc, "Esc");
+        });
+      });
+    }
+
+    function addToCart(id, delta){
+      const cur = state.cart.get(id) || 0;
+      const next = Math.max(0, cur + delta);
+      if(next === 0) state.cart.delete(id); else state.cart.set(id, next);
+      updateCartUI();
+      const item = MENU.find(x => x.id === id);
+      if(delta > 0) showToast(`Added: ${item.name}`, `In cart: ${state.cart.get(id)} item(s)`, "Enter");
+      if(delta < 0) showToast(`Updated: ${item.name}`, `Remaining: ${state.cart.get(id) || 0}`, "Enter");
+    }
+
+    function updateCartUI(){
+      const count = Array.from(state.cart.values()).reduce((a,b)=>a+b,0);
+      cartCount.textContent = String(count);
+
+      let total = 0;
+      const lines = Array.from(state.cart.entries()).map(([id,qty]) => {
+        const item = MENU.find(x => x.id === id);
+        total += item.price * qty;
+        return `
+          <div class="line" data-id="${id}">
+            <div>
+              <b>${item.name}</b>
+              <div><small>${item.type.toUpperCase()} • ${money(item.price)} × ${qty}</small></div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <button class="ghostMini minus">−</button>
+              <div style="font-weight:950; min-width:18px; text-align:center;">${qty}</div>
+              <button class="mini plus">+</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      cartLines.innerHTML = lines || `<div class="line"><div><b>Your cart is empty</b><div><small>Add items from the menu to continue.</small></div></div><div class="badge">—</div></div>`;
+      cartTotal.textContent = money(total);
+
+      $$(".line", cartLines).forEach(line => {
+        const id = line.dataset.id;
+        const plus = $(".plus", line);
+        const minus = $(".minus", line);
+        if(plus) plus.addEventListener("click", () => { addToCart(id, 1); renderMenu(); });
+        if(minus) minus.addEventListener("click", () => { addToCart(id, -1); renderMenu(); });
+      });
+    }
+
+    function showToast(title, sub, keyHint=""){
+      toastTitle.textContent = title;
+      toastSub.textContent = sub || "";
+      toastKbd.textContent = keyHint || "";
+      toast.classList.add("show");
+      clearTimeout(state.toastTimer);
+      state.toastTimer = setTimeout(()=> toast.classList.remove("show"), 2200);
+    }
+
+    function openModal(){
+      modalBg.classList.add("open");
+      modalBg.setAttribute("aria-hidden","false");
+      updateCartUI();
+    }
+    function closeModalFn(){
+      modalBg.classList.remove("open");
+      modalBg.setAttribute("aria-hidden","true");
+    }
+
+    function renderReviews(){
+      revTrack.innerHTML = REVIEWS.map(r => {
+        const stars = "★★★★★".slice(0, r.stars) + "☆☆☆☆☆".slice(0, 5-r.stars);
+        return `
+          <div class="reviewCard">
+            <div class="stars" aria-label="${r.stars} stars">${stars.split("").join(" ")}</div>
+            <p class="quote">“${r.text}”</p>
+            <div class="who">
+              <div style="display:flex; gap:10px; align-items:center;">
+                <div class="avatar" aria-hidden="true"></div>
+                <div>
+                  <b>${r.name}</b>
+                  <span>${r.place}</span>
+                </div>
+              </div>
+              <div class="badge">${r.badge}</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+      slideReviews(0);
+    }
+
+    function slideReviews(step){
+      const cards = $$(".reviewCard", revTrack);
+      if(!cards.length) return;
+      const maxIndex = REVIEWS.length - 1;
+      state.revIndex = Math.min(maxIndex, Math.max(0, state.revIndex + step));
+
+      const containerWidth = revTrack.clientWidth;
+      const sample = cards[0].getBoundingClientRect().width;
+      const gap = 12;
+      const perView = containerWidth >= 980 ? 3 : (containerWidth >= 620 ? 2 : 1);
+      const page = Math.floor(state.revIndex / perView);
+      const offset = -(page * (sample + gap) * perView);
+
+      cards.forEach(c => c.style.setProperty("--rx", offset + "px"));
+    }
+
+    function startAutoReviews(){
+      stopAutoReviews();
+      state.revTimer = setInterval(() => {
+        state.revIndex = (state.revIndex + 1) % REVIEWS.length;
+        slideReviews(0);
+      }, 3200);
+    }
+    function stopAutoReviews(){
+      if(state.revTimer) clearInterval(state.revTimer);
+      state.revTimer = null;
+    }
+
+    function setFilter(f){
+      state.filter = f;
+      filterBtns.forEach(b => b.classList.toggle("active", b.dataset.filter === f));
+      renderMenu();
+    }
+
+    function pickRandom(){
+      const pool = MENU.filter(i => state.filter === "all" ? true : i.type === state.filter);
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      showToast("Random selection", pick.name, "Enter");
+      document.querySelector(`[data-id="${pick.id}"]`)?.scrollIntoView({behavior:"smooth", block:"center"});
+    }
+
+    function copyText(text){
+      navigator.clipboard.writeText(text).then(()=>{
+        showToast("Copied", text, "Ctrl/⌘");
+      }).catch(()=>{
+        showToast("Copy failed", "Please copy manually.", "");
+      });
+    }
+
+    function wire(){
+      $("#year").textContent = new Date().getFullYear();
+      renderMenu();
+      renderReviews();
+      startAutoReviews();
+
+      search.addEventListener("input", (e) => {
+        state.q = e.target.value;
+        renderMenu();
+      });
+
+      filterBtns.forEach(btn => btn.addEventListener("click", () => setFilter(btn.dataset.filter)));
+
+      openCartBtn.addEventListener("click", openModal);
+      closeModal.addEventListener("click", closeModalFn);
+      modalBg.addEventListener("click", (e)=>{ if(e.target === modalBg) closeModalFn(); });
+
+      clearCart.addEventListener("click", ()=>{
+        state.cart.clear();
+        updateCartUI();
+        renderMenu();
+        showToast("Cleared", "Your cart has been reset.", "Enter");
+      });
+
+      checkout.addEventListener("click", ()=>{
+        const count = Array.from(state.cart.values()).reduce((a,b)=>a+b,0);
+        if(count === 0){ showToast("Empty cart", "Please add an item first.", "Enter"); return; }
+        showToast("Order preview", "Connect to an API for real ordering.", "Enter");
+      });
+
+      $("#scrollMenu").addEventListener("click", ()=> $("#menu").scrollIntoView({behavior:"smooth"}));
+      $("#randomPick").addEventListener("click", pickRandom);
+
+      $("#copyLocation").addEventListener("click", ()=> copyText("laab lab — Phuket Old Town"));
+
+      $("#callBtn").addEventListener("click", ()=> showToast("Call", "Insert a real phone number if needed.", "Enter"));
+      $("#lineBtn").addEventListener("click", ()=> showToast("LINE", "Insert a LINE OA link if needed.", "Enter"));
+      $("#igBtn").addEventListener("click", ()=> showToast("Instagram", "Insert an official handle if needed.", "Enter"));
+
+      prevRev.addEventListener("click", ()=>{ state.revIndex = Math.max(0, state.revIndex - 1); slideReviews(0); });
+      nextRev.addEventListener("click", ()=>{ state.revIndex = Math.min(REVIEWS.length - 1, state.revIndex + 1); slideReviews(0); });
+
+      revTrack.addEventListener("mouseenter", stopAutoReviews);
+      revTrack.addEventListener("mouseleave", startAutoReviews);
+      window.addEventListener("resize", ()=> slideReviews(0));
+
+      document.addEventListener("keydown", (e)=>{
+        if(e.key === "Escape"){ closeModalFn(); toast.classList.remove("show"); }
+        if(e.key === "Enter" && !modalBg.classList.contains("open")) openModal();
+        if(e.key === "ArrowLeft") { state.revIndex = Math.max(0, state.revIndex - 1); slideReviews(0); }
+        if(e.key === "ArrowRight"){ state.revIndex = Math.min(REVIEWS.length - 1, state.revIndex + 1); slideReviews(0); }
+      });
+
+      	const hero = $("#heroCard");
+      hero.addEventListener("mousemove", (e)=>{
+        const r = hero.getBoundingClientRect();
+        const mx = ((e.clientX - r.left) / r.width) * 100;
+        const my = ((e.clientY - r.top) / r.height) * 100;
+        hero.style.setProperty("--mx", mx + "%");
+        hero.style.setProperty("--my", my + "%");
+      });
+    }
+
+    wire();
+  </script>
+</body>
+</html>
